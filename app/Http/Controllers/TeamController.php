@@ -1,11 +1,11 @@
 <?php
-// app/Http/Controllers/TeamController.php
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamRequest;
 use App\Models\Team;
-use Illuminate\Http\Request;
 use App\Http\Resources\TeamResource;
+use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
@@ -17,13 +17,9 @@ class TeamController extends Controller
         return TeamResource::collection($teams);
     }
 
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $team = Team::create($data);
+        $team = Team::create($request->validated());
 
         return new TeamResource($team);
     }
@@ -34,16 +30,12 @@ class TeamController extends Controller
         return new TeamResource($team);
     }
 
-    public function update(Request $request, $id)
+    public function update(TeamRequest $request, $id)
     {
         $team = Team::findOrFail($id);
+        $team->update($request->validated());
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $team->update($data);
-
+        // return a response with updated team
         return new TeamResource($team);
     }
 
