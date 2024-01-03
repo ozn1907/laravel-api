@@ -4,12 +4,12 @@ namespace Database\Factories;
 
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\League;
 class TeamFactory extends Factory
 {
     protected $model = Team::class;
 
-    public function definition()
+    public function definition(): array
     {
         $cities = ['London', 'Madrid', 'Manchester', 'Barcelona', 'Berlin', 'Paris', 'Milan'];
         $foundations = [1892, 1902, 1878, 1899, 1892, 1970, 1908];
@@ -21,6 +21,7 @@ class TeamFactory extends Factory
             'city' => $this->faker->randomElement($cities),
             'foundation_year' => $this->faker->randomElement($foundations),
             'description' => $this->faker->sentence,
+            'league_id' => League::factory(),
         ];
     }
 }

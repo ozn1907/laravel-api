@@ -1,7 +1,5 @@
 <?php
 
-// database/migrations/create_teams_table.php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +14,7 @@ class CreateTeamsTable extends Migration
             $table->string('city')->nullable();
             $table->integer('foundation_year')->nullable();
             $table->text('description')->nullable();
+            $table->foreignId('league_id')->constrained();
             $table->timestamps();
         });
     }
