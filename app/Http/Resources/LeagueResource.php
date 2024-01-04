@@ -19,7 +19,6 @@ class LeagueResource extends JsonResource
             'name' => $this->name,
             'country' => $this->country,
             'establishment_year' => $this->establishment_year,
-            'teams' => TeamResource::collection($this->whenLoaded('teams')), 
         ];
     }
 }

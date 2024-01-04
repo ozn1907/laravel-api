@@ -1,5 +1,4 @@
 <?php
-// app/Models/Team.php
 
 namespace App\Models;
 

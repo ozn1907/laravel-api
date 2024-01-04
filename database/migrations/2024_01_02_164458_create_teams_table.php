@@ -6,21 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTeamsTable extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('city')->nullable();
-            $table->integer('foundation_year')->nullable();
-            $table->text('description')->nullable();
-            $table->foreignId('league_id')->constrained();
-            $table->timestamps();
+            $table->id(); 
+            $table->unsignedBigInteger('league_id'); 
+            $table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade');
+            $table->string('name'); 
+            $table->string('city'); 
+            $table->integer('foundation_year'); 
+            $table->text('description'); 
+            $table->timestamps(); 
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('teams'); // Drops the 'teams' table
     }
 }
