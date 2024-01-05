@@ -18,7 +18,7 @@ class CreateTeamsTable extends Migration
             $table->string('name'); 
             $table->string('city'); 
             $table->integer('foundation_year'); 
-            $table->text('description'); 
+            // $table->text('description'); 
             $table->timestamps(); 
         });
     }

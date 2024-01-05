@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         
         // \App\Models\User::factory(10)->create();
 
-        TeamFactory::new()->count(50)->create();
+        TeamFactory::new()->count(20)->create();
         LeagueFactory::new()->count(5)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

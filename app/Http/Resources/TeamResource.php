@@ -13,7 +13,7 @@ class TeamResource extends JsonResource
             'name' => $this->name,
             'city' => $this->city,
             'foundation_year' => $this->foundation_year,
-            'description' => $this->description,
+            // 'description' => $this->description,
             
         ];
     }
