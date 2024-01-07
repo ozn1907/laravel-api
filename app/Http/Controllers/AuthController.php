@@ -4,44 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json(['token' => $token], 201);
-    }
-
     public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string',
+            'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!auth()->attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $user = auth()->user();
 
-        return response()->json(['token' => $token], 200);
+        return response()->json([
+            'message' => 'Successfully logged in',
+            'user' => $user,
+            'token_type' => 'Bearer',
+            'token' => $user->createToken('auth_token')->plainTextToken,
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        $user = User::create($request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|confirmed|min:6',
+        ]));
+
+        return response()->json([
+            'message' => 'Successfully registered',
+            'user' => $user,
+            'token_type' => 'Bearer',
+            'token' => $user->createToken('auth_token')->plainTextToken,
+        ], 201);
     }
 }
