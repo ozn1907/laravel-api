@@ -4,6 +4,8 @@ use App\Http\Controllers\LeagueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,5 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-    Route::resource('teams', TeamController::class);
-    Route::resource('leagues', LeagueController::class);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::resource('teams', TeamController::class);
+Route::resource('leagues', LeagueController::class);
