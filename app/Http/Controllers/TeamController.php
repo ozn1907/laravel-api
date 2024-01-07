@@ -21,7 +21,7 @@ class TeamController extends Controller
     {
         $team = Team::create($request->validated());
 
-        return new TeamResource($team);
+        return (new TeamResource($team))->additional(['message' => 'Team created successfully']);
     }
 
     public function show($id)
@@ -36,7 +36,7 @@ class TeamController extends Controller
         $team->update($request->validated());
 
         // return a response with updated team
-        return new TeamResource($team);
+        return (new TeamResource($team))->additional(['message' => 'Team updated successfully']);
     }
 
     public function destroy($id)
