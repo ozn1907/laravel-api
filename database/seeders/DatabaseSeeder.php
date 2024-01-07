@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use Database\Factories\LeagueFactory;
 use Database\Factories\TeamFactory;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         TeamFactory::new()->count(50)->create();
         LeagueFactory::new()->count(5)->create();
+        UserFactory::new()->count(10)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
