@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TeamRequest;
+use App\Http\Requests\TeamStoreRequest;
+use App\Http\Requests\TeamUpateRequest;
 use App\Models\Team;
 use App\Http\Resources\TeamResource;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class TeamController extends Controller
         return TeamResource::collection($teams);
     }
 
-    public function store(TeamRequest $request)
+    public function store(TeamStoreRequest $request)
     {
         $team = Team::create($request->validated());
 
@@ -30,7 +31,7 @@ class TeamController extends Controller
         return new TeamResource($team);
     }
 
-    public function update(TeamRequest $request, $id)
+    public function update(TeamUpateRequest $request, $id)
     {
         $team = Team::findOrFail($id);
         $team->update($request->validated());
