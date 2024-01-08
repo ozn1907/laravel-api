@@ -24,7 +24,7 @@ class TeamUpateRequest extends FormRequest
         return [
             'name' => 'sometimes|required|string',
             'city' => 'sometimes|required|string',
-            'foundation_year' => 'integer', // Allow updating, but not required
+            'foundation_year' => 'sometimes|required|integer',
         ];
     }
 }
