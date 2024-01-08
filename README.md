@@ -72,6 +72,7 @@ The API includes operations to manage teams. Here are the endpoints:
         - `name` (string, required): The name of the team.
         - `city` (string, required): The city of the team.
         - `foundation_year` (string, required): The foundation year of the team.
+        - `description` (string, required): The description of the team.
     - **Response:**
     ```
     ```json
@@ -81,14 +82,15 @@ The API includes operations to manage teams. Here are the endpoints:
             "id": 1,
             "name": "New Team",
             "city": "New City",
-            "foundation_year": "New Foundation Year"
+            "foundation_year": "New Foundation Year",
+            "description": "New Description"
           }
         } 
     ``` 
 - **Read teams:**
 
     ```markdown
-    - **Endpoint:** `/api/teams`
+    - **Endpoint:** `/api/teams/{id}`
     - **Method:** `GET`
     - **Description:** Retrieve a list of all teams.
     - **Parameters:**
@@ -103,7 +105,9 @@ The API includes operations to manage teams. Here are the endpoints:
               "id": 1,
               "name": "Team 1",
               "city": "City 1",
-              "foundation_year": "Foundation Year 1"
+              "foundation_year": "Foundation Year 1",
+              "description": "Description 1",
+              
             },
             // ... other teams
           ]
@@ -117,9 +121,10 @@ The API includes operations to manage teams. Here are the endpoints:
     - **Method:** `PUT`
     - **Description:** Update an existing team.
     - **Parameters:**
-        - `name` (string, required): The updated name of the team.
-        - `city` (string, required): The updated city of the team.
-        - `foundation_year` (string, required): The updated foundation year of the team.
+        - `name` (string, optional): The updated name of the team.
+        - `city` (string, optional): The updated city of the team.
+        - `foundation_year` (string, optional): The updated foundation year of the team.
+        - `description` (string, optional): The updated description of the team.
     - **Response:**
     ```
     ```json
@@ -129,7 +134,8 @@ The API includes operations to manage teams. Here are the endpoints:
             "id": 1,
             "name": "Updated Team",
             "city": "Updated City",
-            "foundation_year": "Updated Foundation Year"
+            "foundation_year": "Updated Foundation Year",
+            "description": "Updated Description"
           }
         }
     ```
