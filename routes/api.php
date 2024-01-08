@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LeagueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
@@ -27,4 +26,3 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::resource('teams', TeamController::class);
-Route::resource('leagues', LeagueController::class);

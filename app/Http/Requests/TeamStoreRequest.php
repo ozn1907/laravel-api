@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TeamRequest extends FormRequest
+class TeamStoreRequest extends FormRequest
 {
     public function authorize()
     {
@@ -15,6 +15,9 @@ class TeamRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'foundation_year' => 'required|integer',
+            'description' => 'required|string',
         ];
     }
 }
